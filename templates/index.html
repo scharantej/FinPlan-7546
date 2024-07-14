@@ -1,0 +1,94 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Financial Planning App</title>
+<link
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+rel="stylesheet"
+/>
+</head>
+<body>
+<div class="container">
+<h1>Financial Planning App</h1>
+<form action="/create_goal" method="POST">
+<div class="form-group">
+<label for="name">Goal Name</label>
+<input type="text" class="form-control" id="name" name="name" />
+</div>
+<div class="form-group">
+<label for="target_amount">Target Amount</label>
+<input
+type="number"
+class="form-control"
+id="target_amount"
+name="target_amount"
+/>
+</div>
+<div class="form-group">
+<label for="current_amount">Current Amount</label>
+<input
+type="number"
+class="form-control"
+id="current_amount"
+name="current_amount"
+/>
+</div>
+<button type="submit" class="btn btn-primary">Create Goal</button>
+</form>
+<hr />
+<form action="/add_transaction" method="POST">
+<div class="form-group">
+<label for="goal_id">Goal</label>
+<select class="form-control" id="goal_id" name="goal_id">
+{% for goal in goals %}
+<option value="{{ goal.id }}">{{ goal.name }}</option>
+{% endfor %}
+</select>
+</div>
+<div class="form-group">
+<label for="amount">Amount</label>
+<input
+type="number"
+class="form-control"
+id="amount"
+name="amount"
+/>
+</div>
+<div class="form-group">
+<label for="date">Date</label>
+<input type="date" class="form-control" id="date" name="date" />
+</div>
+<button type="submit" class="btn btn-primary">Add Transaction</button>
+</form>
+<hr />
+<h2>Financial Plan</h2>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Goal</th>
+<th>Target Amount</th>
+<th>Current Amount</th>
+</tr>
+</thead>
+<tbody>
+{% for goal in goals %}
+<tr>
+<td>{{ goal.name }}</td>
+<td>{{ goal.target_amount }}</td>
+<td>{{ goal.current_amount }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
